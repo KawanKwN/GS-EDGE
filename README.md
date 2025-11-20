@@ -1,4 +1,4 @@
-/* --------------------------------------------------------------------------
+
 PROJETO: Smart Office Monitor - Global Solutions 2025
 TEMA: O Futuro do Trabalho (Saúde e Bem-Estar)
 
@@ -6,14 +6,12 @@ INTEGRANTES:
 - Kawan Oliveira Amorim 562197
 - Alana Vieira Batista Rm563796
 
-DESCRIÇÃO TÉCNICA:
+DESCRIÇÃO:
 Este firmware implementa um sistema IoT baseado em ESP32 com arquitetura de 
 multitarefa (não-bloqueante).
 1. COLETA: Lê sensores de ambiente (DHT), ergonomia (Ultrassom) e biométricos (Potenciômetro).
 2. PROCESSAMENTO (EDGE): Analisa os dados localmente e aciona alertas imediatos (LED/Buzzer).
 3. TELEMETRIA: Envia os dados via requisições HTTP GET para a nuvem (ThingSpeak).
--------------------------------------------------------------------------- 
-*/
 
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -30,15 +28,15 @@ DHT dht(DHTPIN, DHTTYPE);
 #define ALERT_LED_PIN 2  // LED de alerta
 #define BUZZER_PIN 4     // Buzzer
 
-// --- Configurações de Rede e IoT ---
+// Configurações de Rede e IoT
 const char* ssid = "Wokwi-GUEST";
 const char* password = "";
 
-// 🔥 SUA API NOVA DO THINGSPEAK
+// API DO THINGSPEAK
 const char* apiKey = "SB6WXWSD3LI5SHQC";    
 const char* server = "http://api.thingspeak.com";
 
-// --- Controle de tempo (multitarefa) ---
+// --- Controle de tempo
 unsigned long lastTime = 0;
 unsigned long timerDelay = 15000; // Envio a cada 15s
 
@@ -65,9 +63,7 @@ void setup() {
 }
 
 void loop() {
-  // ============================================================
   // BLOCO 1: EDGE COMPUTING – alerta imediato ao usuário
-  // ============================================================
 
   float h = dht.readHumidity();
   float t = dht.readTemperature();
@@ -103,9 +99,7 @@ void loop() {
     noTone(BUZZER_PIN);
   }
 
-  // ============================================================
   // BLOCO 2: TELEMETRIA – envio ao ThingSpeak
-  // ============================================================
   
   if ((millis() - lastTime) > timerDelay) {
 
