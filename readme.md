@@ -50,6 +50,7 @@ HTTP GET para envio de dados ao ThingSpeak.
 Exemplo da requisição gerada pelo ESP32:
 
 http://api.thingspeak.com/update?api_key=UN12UJN0ULVIQ5FC
+
 &field1=temperatura
 &field2=umidade
 &field3=bpm
@@ -72,4 +73,5 @@ Veja os dados sendo enviados e os alertas sendo acionados.
 
 Acesse aqui:
 https://wokwi.com/projects/447986263591639041
+
 
